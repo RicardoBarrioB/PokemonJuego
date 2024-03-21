@@ -3,13 +3,15 @@ package es.proyecto.pokemon.modelo;
 import java.util.Map;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Pokemon {
-		
-	int idPokemon;
 	
-	String nombrePokemon;
+	@Id
+	int idPokemon; 
+	
+	String nombrePokemon; 
 	
 	int pesoPokemon;
 	
