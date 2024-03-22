@@ -7,11 +7,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-//import control.Teclado;
-import es.proyecto.graficos.Screen;
-//import graficos.Pantalla;
-//import juego.Juego;
-//import mapa.Mapa;
+import es.proyecto.grafics.Screen;
 
 public class Game extends Canvas implements Runnable{
 	

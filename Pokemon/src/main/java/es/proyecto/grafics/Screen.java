@@ -1,4 +1,4 @@
-package es.proyecto.graficos;
+package es.proyecto.grafics;
 
 import javax.swing.JFrame;
 
