@@ -1,6 +1,7 @@
-package es.proyecto.pokemon.model;
+package es.proyecto.pokemon.pokemon.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,7 +18,9 @@ import javax.persistence.Transient;
 @Table(name = "pokemon")
 @SecondaryTable(name = "base_stats", pkJoinColumns = @PrimaryKeyJoinColumn(name = "poke_id"))
 public class Pokemon implements Serializable{
-	
+
+	private static final long serialVersionUID = 1L;
+
 	int idPokemon;
 	
 	String Species;
@@ -38,7 +41,7 @@ public class Pokemon implements Serializable{
 	
 	int speed;
 	
-	String [] types = new String [2];
+	List<String> types;
 	
 	Set<Move> moves;
 	
@@ -138,11 +141,11 @@ public class Pokemon implements Serializable{
 	}
 
 	@Transient
-	public String[] getTypes() {
+	public List<String> getTypes() {
 		return types;
 	}
 
-	public void setTypes(String[] types) {
+	public void setTypes(List<String> types) {
 		this.types = types;
 	}
 
