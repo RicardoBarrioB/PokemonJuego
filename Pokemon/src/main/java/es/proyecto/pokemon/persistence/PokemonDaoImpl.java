@@ -1,16 +1,19 @@
 package es.proyecto.pokemon.persistence;
 
 import java.util.Set;
+import java.util.TreeSet;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import es.proyecto.pokemon.model.Move;
 import es.proyecto.pokemon.model.Pokemon;
+import es.proyecto.pokemon.model.Type;
 
 @Repository
 public class PokemonDaoImpl implements PokemonDao{
@@ -20,46 +23,75 @@ public class PokemonDaoImpl implements PokemonDao{
 	
 	EntityManager em;
 
+	private void em() {
+		em = emf.createEntityManager();
+	}
+	
 	@Override
 	public Set<Pokemon> allPokemon() {
-		// TODO Auto-generated method stub
-		return null;
+		em();
+		TypedQuery<Pokemon> query = em.createQuery("SELECT p FROM Pokemon p", Pokemon.class);
+		Set<Pokemon> all = new TreeSet<>(query.getResultList());
+		em.close();
+		
+		return all;
 	}
 
 	@Override
 	public Pokemon findPokemon(int idPokemon) {
-		// TODO Auto-generated method stub
-		return null;
+		em();
+		Pokemon poke = em.find(Pokemon.class, idPokemon);		
+		em.close();
+		
+		return poke;
 	}
 
 	@Override
 	public Set<Pokemon> findPokemonName(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Set<Pokemon> findPokType(String type) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void namedPokemon(Pokemon pokemon) {
-		// TODO Auto-generated method stub
+		em();
+		String jpql = "SELECT p FROM Pokemon p WHERE p.species LIKE :cadena";
+		TypedQuery<Pokemon> query = em.createQuery(jpql, Pokemon.class);
+		query.setParameter("cadena", "%" + name + "%");
+		Set<Pokemon> result = new TreeSet<>(query.getResultList());
+		em.close();
 		
+		return result;
 	}
 
 	@Override
-	public void chooseMovs(Pokemon pokemon) {
-		// TODO Auto-generated method stub
+	public Set<Pokemon> findPokType(Type type) {
+		em();
+		String jpql = "SELECT p FROM Pokemon p JOIN p.types t WHERE t = :type";
+		TypedQuery<Pokemon> query = em.createQuery(jpql, Pokemon.class);
+		query.setParameter("type", type);
+		Set<Pokemon> result = new TreeSet<>(query.getResultList());
+		em.close();
 		
+		return result;
 	}
 
 	@Override
-	public void chooseAbility(Pokemon pokemon) {
-		// TODO Auto-generated method stub
+	public Set<Move> allowedMoves(Pokemon pokemon) {
+		em();
+		String sql = "SELECT * FROM moves m JOIN pokemon_moves pm ON m.move_id = pm.move_id WHERE pok_id = :id";
+		Query query = em.createNativeQuery(sql, Move.class);
+		query.setParameter("id", pokemon.getIdPokemon());
+		Set<Move> result = new TreeSet<>(query.getResultList());
+		em.close();
 		
+		return result;
+	}
+
+	@Override
+	public Set<String> allowedAbilities(Pokemon pokemon) {
+		em();
+		String sql = "SELECT a.abil_name FROM abilities a JOIN pokemon_abilities pa ON a.abil_id = pa.abil_id WHERE pok_id = :id";
+		Query query = em.createNativeQuery(sql, String.class);
+		query.setParameter("id", pokemon.getIdPokemon());
+		Set<String> result = new TreeSet<>(query.getResultList());
+		em.close();
+		
+		return result;
 	}
 
 }

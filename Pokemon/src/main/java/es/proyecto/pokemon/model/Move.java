@@ -15,7 +15,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "moves")
-public class Move implements Serializable{
+public class Move implements Serializable, Comparable<Move>{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -107,6 +107,12 @@ public class Move implements Serializable{
 	@Override
 	public String toString() {
 		return "Move [idMov=" + idMov + ", mov=" + mov + ", type=" + type + "]";
+	}
+
+	@Override
+	public int compareTo(Move m) {
+		if(this.equals(m)) return 0;
+		return this.idMov - m.idMov;
 	}
 	
 }

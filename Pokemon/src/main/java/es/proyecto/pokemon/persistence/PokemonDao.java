@@ -2,7 +2,9 @@ package es.proyecto.pokemon.persistence;
 
 import java.util.Set;
 
+import es.proyecto.pokemon.model.Move;
 import es.proyecto.pokemon.model.Pokemon;
+import es.proyecto.pokemon.model.Type;
 
 public interface PokemonDao {
 	
@@ -12,12 +14,10 @@ public interface PokemonDao {
 	
 	Set<Pokemon> findPokemonName(String name);
 	
-	Set<Pokemon> findPokType(String type);
-		
-	void namedPokemon(Pokemon pokemon);
+	Set<Pokemon> findPokType(Type type);
 	
-	void chooseMovs(Pokemon pokemon);
+	Set<Move> allowedMoves(Pokemon pokemon);
 	
-	void chooseAbility(Pokemon pokemon);
+	Set<String> allowedAbilities(Pokemon pokemon);
 	
 }

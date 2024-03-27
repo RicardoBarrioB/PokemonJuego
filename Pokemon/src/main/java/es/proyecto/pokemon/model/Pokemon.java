@@ -19,13 +19,13 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "pokemon")
 @SecondaryTable(name = "base_stats", pkJoinColumns = @PrimaryKeyJoinColumn(name = "poke_id"))
-public class Pokemon implements Serializable{
+public class Pokemon implements Serializable, Comparable<Pokemon>{
 
 	private static final long serialVersionUID = 1L;
 
 	int idPokemon;
 	
-	String Species;
+	String species;
 	
 	String name;
 	
@@ -63,11 +63,11 @@ public class Pokemon implements Serializable{
 	
 	@Column(name = "pok_name")
 	public String getSpecies() {
-		return Species;
+		return species;
 	}
 
 	public void setSpecies(String species) {
-		Species = species;
+		this.species = species;
 	}
 
 	@Transient
@@ -76,7 +76,7 @@ public class Pokemon implements Serializable{
 	}
 
 	public void setName(String name) {
-		this.name = Species;
+		this.name = species;
 	}
 
 	@Column(name = "pok_weight")
@@ -200,7 +200,13 @@ public class Pokemon implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Pokemon [idPokemon=" + idPokemon + ", Species=" + Species + ", name=" + name + "]";
+		return "Pokemon [idPokemon=" + idPokemon + ", Species=" + species + ", name=" + name + "]";
+	}
+
+	@Override
+	public int compareTo(Pokemon p) {
+		if(this.equals(p)) return 0;
+		return this.idPokemon - p.idPokemon;
 	}
 	
 }
