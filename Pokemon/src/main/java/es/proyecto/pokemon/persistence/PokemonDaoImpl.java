@@ -1,4 +1,4 @@
-package es.proyecto.pokemon.pokemon.persistence;
+package es.proyecto.pokemon.persistence;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import es.proyecto.pokemon.pokemon.model.Pokemon;
+import es.proyecto.pokemon.model.Pokemon;
 
 @Repository
 public class PokemonDaoImpl implements PokemonDao{

@@ -1,8 +1,9 @@
-package es.proyecto.pokemon.pokemon.persistence;
+package es.proyecto.pokemon.persistence;
 
 import java.util.Set;
 
-import es.proyecto.pokemon.pokemon.model.Move;
+import es.proyecto.pokemon.model.Move;
+import es.proyecto.pokemon.model.Pokemon;
 
 public interface MoveDao {
 	

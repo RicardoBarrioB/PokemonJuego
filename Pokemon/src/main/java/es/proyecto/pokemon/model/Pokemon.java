@@ -1,4 +1,4 @@
-package es.proyecto.pokemon.pokemon.model;
+package es.proyecto.pokemon.model;
 
 import java.io.Serializable;
 import java.util.List;
