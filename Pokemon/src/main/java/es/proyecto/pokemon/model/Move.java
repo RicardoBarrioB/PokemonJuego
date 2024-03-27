@@ -7,6 +7,9 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -20,17 +23,13 @@ public class Move implements Serializable{
 	
 	String mov;
 	
-	int idType;
-	
-	String type;
+	Type type;
 	
 	int power;
 	
 	int pp;
 	
 	int accuracy;
-	
-	Map<String, Integer> type_efficacy;
 
 	@Id
 	@Column(name = "move_id")
@@ -51,21 +50,13 @@ public class Move implements Serializable{
 		this.mov = mov;
 	}
 	
-	@Column(name = "type_id")
-	public int getIdType() {
-		return idType;
-	}
-
-	public void setIdType(int idType) {
-		this.idType = idType;
-	}
-
-	@Transient
-	public String getType() {
+	@OneToOne
+	@JoinColumn(name = "type_id")
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 
@@ -94,15 +85,6 @@ public class Move implements Serializable{
 
 	public void setAccuracy(int accuracy) {
 		this.accuracy = accuracy;
-	}
-
-	@Transient
-	public Map<String, Integer> getType_efficacy() {
-		return type_efficacy;
-	}
-
-	public void setType_efficacy(Map<String, Integer> type_efficacy) {
-		this.type_efficacy = type_efficacy;
 	}
 
 	@Override

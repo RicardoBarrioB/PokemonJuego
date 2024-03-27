@@ -6,8 +6,6 @@ import es.proyecto.pokemon.model.Pokemon;
 
 public interface PokemonDao {
 	
-	void setTypes();
-	
 	Set<Pokemon> allPokemon();
 	
 	Pokemon findPokemon(int idPokemon);

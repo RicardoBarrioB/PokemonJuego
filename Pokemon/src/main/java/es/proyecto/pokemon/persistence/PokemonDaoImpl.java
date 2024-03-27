@@ -19,28 +19,6 @@ public class PokemonDaoImpl implements PokemonDao{
 	EntityManagerFactory emf;
 	
 	EntityManager em;
-	
-	
-	@PostConstruct
-	@Override
-	public void setTypes() {
-		em = emf.createEntityManager();
-		
-		allPokemon().forEach(poke -> {
-		
-		String sql = "SELECT t.type_name " +
-                "FROM types t " +
-                "JOIN pokemon_types pt ON t.type_id = pt.type_id " +
-                "WHERE pt.pok_id = :idPokemon";
-		
-		Query query = em.createNativeQuery(sql);
-		
-		query.setParameter("idPokemon", poke.getIdPokemon());
-		
-		poke.setTypes(query.getResultList());});
-		
-		em.close();
-	}
 
 	@Override
 	public Set<Pokemon> allPokemon() {

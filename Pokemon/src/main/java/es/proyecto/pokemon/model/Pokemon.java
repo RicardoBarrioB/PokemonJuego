@@ -1,13 +1,15 @@
 package es.proyecto.pokemon.model;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
@@ -41,7 +43,7 @@ public class Pokemon implements Serializable{
 	
 	int speed;
 	
-	List<String> types;
+	Set<Type> types;
 	
 	Set<Move> moves;
 	
@@ -140,12 +142,15 @@ public class Pokemon implements Serializable{
 		this.speed = 10 + (level / 100) * (speed * 2);
 	}
 
-	@Transient
-	public List<String> getTypes() {
+	@OneToMany
+	@JoinTable(name = "pokemon_types",
+    joinColumns = @JoinColumn(name = "pok_id"),
+    inverseJoinColumns = @JoinColumn(name = "type_id"))
+	public Set<Type> getTypes() {
 		return types;
 	}
 
-	public void setTypes(List<String> types) {
+	public void setTypes(Set<Type> types) {
 		this.types = types;
 	}
 
