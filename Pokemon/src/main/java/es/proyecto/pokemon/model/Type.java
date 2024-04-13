@@ -3,6 +3,7 @@ package es.proyecto.pokemon.model;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -24,6 +25,8 @@ public class Type implements Serializable {
 	String type;
 	
 	Map<Integer, String> typeEfficacy;
+	
+	Set<Pokemon> pokeTipo;
 
 	@Id
 	@Column(name = "type_id")
