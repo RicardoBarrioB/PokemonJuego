@@ -26,7 +26,9 @@ public class Type implements Serializable {
 	
 	Map<Integer, String> typeEfficacy;
 	
-	Set<Pokemon> pokeTipo;
+	Set<Pokemon> pokeType;
+	
+	Set<Move> movType;
 
 	@Id
 	@Column(name = "type_id")
