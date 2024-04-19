@@ -11,7 +11,10 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -59,6 +62,24 @@ public class Type implements Serializable {
 
 	public void setTypeEfficacy(Map<Integer, String> typeEfficacy) {
 		this.typeEfficacy = typeEfficacy;
+	}
+
+	@ManyToMany(mappedBy = "types")
+	public Set<Pokemon> getPokeType() {
+		return pokeType;
+	}
+
+	public void setPokeType(Set<Pokemon> pokeType) {
+		this.pokeType = pokeType;
+	}
+
+	@OneToMany(mappedBy = "type")
+	public Set<Move> getMovType() {
+		return movType;
+	}
+
+	public void setMovType(Set<Move> movType) {
+		this.movType = movType;
 	}
 
 	@Override

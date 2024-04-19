@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
@@ -142,7 +143,7 @@ public class Pokemon implements Serializable, Comparable<Pokemon>{
 		this.speed = 10 + (level / 100) * (speed * 2);
 	}
 
-	@OneToMany
+	@ManyToMany
 	@JoinTable(name = "pokemon_types",
     joinColumns = @JoinColumn(name = "pok_id"),
     inverseJoinColumns = @JoinColumn(name = "type_id"))
