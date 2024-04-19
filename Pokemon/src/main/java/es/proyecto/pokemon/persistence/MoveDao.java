@@ -8,11 +8,9 @@ import es.proyecto.pokemon.model.Type;
 
 public interface MoveDao {
 	
-	Set<Move> allMovesPoke(int idPoke);
+	Move findMove(int idMove);
 	
-	Move findMove(int idMove, int idPoke);
-	
-	Set<Move> findMoveName(String name, int idPoke);
+	Set<Move> findMoveName(String name);
 	
 	Set<Move> findMoveType(Type type);
 	
