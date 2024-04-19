@@ -4,6 +4,7 @@ import java.util.Set;
 
 import es.proyecto.pokemon.model.Move;
 import es.proyecto.pokemon.model.Pokemon;
+import es.proyecto.pokemon.model.Type;
 
 public interface MoveDao {
 	
@@ -13,6 +14,6 @@ public interface MoveDao {
 	
 	Set<Move> findMoveName(String name, int idPoke);
 	
-	Set<Move> findMoveType(String type, int idPoke);
+	Set<Move> findMoveType(Type type);
 	
 }

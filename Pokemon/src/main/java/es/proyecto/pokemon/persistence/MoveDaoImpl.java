@@ -3,6 +3,7 @@ package es.proyecto.pokemon.persistence;
 import java.util.Set;
 
 import es.proyecto.pokemon.model.Move;
+import es.proyecto.pokemon.model.Type;
 
 public class MoveDaoImpl implements MoveDao{
 
@@ -25,9 +26,8 @@ public class MoveDaoImpl implements MoveDao{
 	}
 
 	@Override
-	public Set<Move> findMoveType(String type, int idPoke) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<Move> findMoveType(Type type) {
+		return type.getMovType();
 	}
 
 }

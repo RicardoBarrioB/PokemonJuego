@@ -59,15 +59,8 @@ public class PokemonDaoImpl implements PokemonDao{
 	}
 
 	@Override
-	public Set<Pokemon> findPokType(Type type) {
-		em();
-		String jpql = "SELECT p FROM Pokemon p JOIN p.types t WHERE t = :type";
-		TypedQuery<Pokemon> query = em.createQuery(jpql, Pokemon.class);
-		query.setParameter("type", type);
-		Set<Pokemon> result = new TreeSet<>(query.getResultList());
-		em.close();
-		
-		return result;
+	public Set<Pokemon> findPokType(Type type) {		
+		return type.getPokeType();
 	}
 
 	@Override
